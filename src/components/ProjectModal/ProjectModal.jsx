@@ -39,8 +39,8 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
     >
       {/* Modal Content */}
       <div
-        onClick={(e) => e.stopPropagation()} // Mencegah modal tertutup saat diklik di dalam
-        className={`bg-zinc-900 border border-violet-500/50 rounded-2xl shadow-2xl shadow-violet-500/20 w-full max-w-lg transform transition-transform duration-300 ${isClosing ? 'animate-out' : 'animate-in'}`}
+  onClick={(e) => e.stopPropagation()} // Mencegah modal tertutup saat diklik di dalam
+  className={`bg-zinc-900 border border-blue-500/50 rounded-2xl shadow-2xl shadow-blue-500/20 w-full max-w-lg transform transition-transform duration-300 ${isClosing ? 'animate-out' : 'animate-in'}`}
       >
         {/* --- GAMBAR PROYEK --- */}
         <img 
@@ -65,15 +65,19 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                 {project.fullDescription}
             </p>
 
-            <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center justify-center gap-2 font-semibold bg-violet-600 p-3 px-5 rounded-full w-full cursor-pointer border border-transparent hover:bg-violet-700 transition-colors"
-            >
-                <FiGithub />
-                <span>Source Code</span>
-            </a>
+        {project.showButton && (
+          <a
+            href={project.image && project.image.includes('reparo') ? undefined : project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`mt-4 inline-flex items-center justify-center gap-2 font-semibold p-3 px-5 rounded-full w-full border border-transparent transition-colors
+              ${project.image && project.image.includes('reparo') ? 'bg-gray-500 text-white cursor-not-allowed pointer-events-none' : 'bg-blue-600 hover:bg-blue-700'}`}
+            style={project.image && project.image.includes('reparo') ? { opacity: 0.7 } : {}}
+          >
+            <FiGithub />
+            <span>Acesse aqui</span>
+          </a>
+        )}
         </div>
       </div>
        {/* CSS untuk animasi */}

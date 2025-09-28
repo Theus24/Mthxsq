@@ -15,13 +15,12 @@ export default function ChatRoom() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
-  // Cek login
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (u) => setUser(u));
     return () => unsub();
   }, []);
 
-  // Ambil pesan real-time
+  // Buscar mensagens salvas no Firestore em tempo real
   useEffect(() => {
     const q = query(collection(db, "messages"), orderBy("createdAt"));
     const unsub = onSnapshot(q, (snapshot) => {
@@ -30,13 +29,30 @@ export default function ChatRoom() {
     return () => unsub();
   }, []);
 
-  // Kirim pesan
+  // Lista simples de palavrões (adicione mais conforme necessário)
+  const badWords = [
+    "lixo", "burro", "filho da puta", "merda", "porra", "caralho", "bosta", "puta", "fdp", "desgraça", "droga", "cacete", "cuzao", "cuzão", "buceta", "boceta", "vagabundo", "vagabunda", "idiota", "imbecil", "otário", "otária", "palhaço", "palhaça", "retardado", "retardada", "viado", "viada", "bicha", "animal", "bestial", "canalha", "canalha", "corno", "corna", "cabrão", "cabrona", "piranha", "safado", "safada", "tarado", "tarada", 
+  ];
+
+  // Função para censurar palavrões
+  function censorBadWords(text) {
+    let censored = text;
+    badWords.forEach((word) => {
+      const regex = new RegExp(word, "gi");
+      censored = censored.replace(regex, "#".repeat(word.length));
+    });
+    return censored;
+  }
+
+  // Enviar mensagem com censura
   const sendMessage = async (e) => {
     e.preventDefault();
     if (!message.trim()) return;
 
+    const censoredText = censorBadWords(message);
+
     await addDoc(collection(db, "messages"), {
-      text: message,
+      text: censoredText,
       uid: user.uid,
       displayName: user.displayName,
       photoURL: user.photoURL,
@@ -47,7 +63,7 @@ export default function ChatRoom() {
 
   return (
     <div className="bg-zinc-900 border border-gray-700 p-6 rounded-xl shadow-lg max-w-xl mx-auto mt-5">
-      <h2 className="text-2xl font-bold text-center mb-4 text-white">💬 Chat Room</h2>
+      <h2 className="text-2xl font-bold text-center mb-4 text-white">💬 Bate-papo</h2>
 
       {/* Header user */}
       {user && (
@@ -60,7 +76,7 @@ export default function ChatRoom() {
             onClick={logout}
             className="bg-red-600 px-4 py-1 rounded-full text-white hover:bg-red-700"
           >
-            Logout
+            Sair
           </button>
         </div>
       )}
@@ -107,14 +123,14 @@ export default function ChatRoom() {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Ketik pesan..."
+            placeholder="Converse aqui..."
             className="flex-1 min-w-0 p-2 rounded-lg bg-zinc-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="submit"
             className="bg-green-600 px-4 py-2 rounded-lg text-white hover:bg-green-700 w-full sm:w-auto"
           >
-            Send
+            Enviar
           </button>
         </form>
       ) : (
@@ -128,9 +144,9 @@ export default function ChatRoom() {
               alt="Google logo"
               className="w-5 h-5"
             />
-            Login with Google
+            Entre com o Google
           </button>
-          <p className="text-sm text-gray-400">Login untuk mengirim pesan</p>
+          <p className="text-sm text-gray-400">Logue aqui para conversar</p>
         </div>
       )}
     </div>

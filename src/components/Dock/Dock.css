@@ -9,10 +9,10 @@
   gap: 1rem;
   border-radius: 1rem;
   background: linear-gradient(145deg, rgba(60,60,60,0.9), rgba(30,30,30,0.9));
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(206, 0, 0, 0.08);
   backdrop-filter: blur(10px);
   padding: 0 0.5rem 0.5rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 20px rgba(0, 202, 253, 0.4);
 }
 
 .dock-item {
@@ -23,7 +23,7 @@
   border-radius: 10px;
   background: linear-gradient(145deg, rgba(80,80,80,0.9), rgba(50,50,50,0.9));
   border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   outline: none;
   transition: transform 0.2s ease, background 0.2s ease;

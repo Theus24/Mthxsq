@@ -4,12 +4,12 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBFgA6JpGqNBrWPfR-lKercjvy5Y6ky7zc",
-  authDomain: "webportofolio-8498b.firebaseapp.com",
-  projectId: "webportofolio-8498b",
-  storageBucket: "webportofolio-8498b.firebasestorage.app",
-  messagingSenderId: "543954266098",
-  appId: "1:543954266098:web:029e84a24273fd15d62d6b"
+  apiKey: "AIzaSyD14sVVm4jWOQaTUuAvyfYS1FXIVxkxbDc",
+  authDomain: "chatroom-ac0b7.firebaseapp.com",
+  projectId: "chatroom-ac0b7",
+  storageBucket: "chatroom-ac0b7.firebasestorage.app",
+  messagingSenderId: "452472655575",
+  appId: "1:452472655575:web:e09647918f92726d936a92"
 };
 
 // Init Firebase

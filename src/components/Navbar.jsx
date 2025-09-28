@@ -1,6 +1,32 @@
 import { useState, useEffect } from "react";
 
 const Navbar = ({ hidden = false }) => {
+  // Função de scroll suave com aceleração
+  const smoothScrollTo = (targetId) => {
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    const startY = window.scrollY;
+    const endY = target.getBoundingClientRect().top + window.scrollY;
+    const distance = Math.abs(endY - startY);
+    let duration = Math.min(1700, Math.max(600, distance * 0.7));
+
+    let startTime = null;
+    function scrollStep(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      if (elapsed > 1700) duration = 400;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = progress < 0.5
+        ? 2 * progress * progress
+        : -1 + (4 - 2 * progress) * progress;
+      window.scrollTo(0, startY + (endY - startY) * ease);
+      if (progress < 1) {
+        requestAnimationFrame(scrollStep);
+      }
+    }
+    requestAnimationFrame(scrollStep);
+  };
   // ⛔ Saat hidden, jangan render apa pun
   if (hidden) return null;
 
@@ -18,7 +44,7 @@ const Navbar = ({ hidden = false }) => {
       {/* Logo */}
       <div className="logo">
         <h1 className="text-3xl font-bold text-white p-1 md:bg-transparent md:text-white">
-          Portofolio
+          Portfólio
         </h1>
       </div>
 
@@ -32,10 +58,42 @@ const Navbar = ({ hidden = false }) => {
           transition-all md:transition-none
           ${active ? "top-0 opacity-100" : "-top-10 opacity-0"}`}
       >
-        <li><a href="#home" className="sm:text-lg text-base font-medium">Home</a></li>
-        <li><a href="#about" className="sm:text-lg text-base font-medium">About</a></li>
-        <li><a href="#project" className="sm:text-lg text-base font-medium">Project</a></li>
-        <li><a href="#contact" className="sm:text-lg text-base font-medium">Contact</a></li>
+        <li>
+          <a
+            href="#home"
+            className="sm:text-lg text-base font-medium"
+            onClick={e => { e.preventDefault(); smoothScrollTo('home'); }}
+          >
+            Inicio
+          </a>
+        </li>
+        <li>
+          <a
+            href="#about"
+            className="sm:text-lg text-base font-medium"
+            onClick={e => { e.preventDefault(); smoothScrollTo('about'); }}
+          >
+            Sobre
+          </a>
+        </li>
+        <li>
+          <a
+            href="#project"
+            className="sm:text-lg text-base font-medium"
+            onClick={e => { e.preventDefault(); smoothScrollTo('project'); }}
+          >
+            Projetos
+          </a>
+        </li>
+        <li>
+          <a
+            href="#contact"
+            className="sm:text-lg text-base font-medium"
+            onClick={e => { e.preventDefault(); smoothScrollTo('contact'); }}
+          >
+            Contato
+          </a>
+        </li>
       </ul>
     </nav>
   );

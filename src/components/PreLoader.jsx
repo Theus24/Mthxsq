@@ -7,23 +7,12 @@ const PreLoader = () => {
   const [countDone, setCountDone] = useState(false)
   const [fadeText, setFadeText] = useState(false)
   const [fadeScreen, setFadeScreen] = useState(false)
+  const [showDeviceSelect, setShowDeviceSelect] = useState(false);
 
   useEffect(() => {
     if (countDone) {
-      // Fade teks
-      const fadeTextTimer = setTimeout(() => setFadeText(true), 3000)
-
-      // Fade seluruh screen
-      const fadeScreenTimer = setTimeout(() => setFadeScreen(true), 2000)
-
-      // Unmount preloader setelah animasi fade selesai
-      const hideTimer = setTimeout(() => setLoading(false), 3000)
-
-      return () => {
-        clearTimeout(fadeTextTimer)
-        clearTimeout(fadeScreenTimer)
-        clearTimeout(hideTimer)
-      }
+      // Após a contagem, mostra seleção de dispositivo
+      setShowDeviceSelect(true);
     }
   }, [countDone])
 
@@ -40,21 +29,50 @@ const PreLoader = () => {
           amplitude={1.0}
           speed={0.5}
         />
-        <div
-          className={`absolute text-white text-6xl font-bold transition-all duration-1000 ${
-            fadeText ? "opacity-0 -translate-y-10" : "opacity-100 translate-y-0"
-          }`}
-        >
-          <CountUp
-            from={0}
-            to={100}
-            separator=","
-            direction="up"
-            duration={1}
-            className="count-up-text"
-            onEnd={() => setCountDone(true)}
-          />
-        </div>
+        {!showDeviceSelect ? (
+          <div
+            className={`absolute text-white text-6xl font-bold transition-all duration-1000 ${
+              fadeText ? "opacity-0 -translate-y-10" : "opacity-100 translate-y-0"
+            }`}
+          >
+            <CountUp
+              from={0}
+              to={100}
+              separator="," 
+              direction="up"
+              duration={1}
+              className="count-up-text"
+              onEnd={() => setCountDone(true)}
+            />
+          </div>
+        ) : (
+          <div className="absolute flex flex-col items-center justify-center gap-8 w-full">
+            <div className="mb-2 px-4 py-2 rounded-xl bg-blue-900/80 text-white text-center text-base font-semibold max-w-xl shadow-lg border border-blue-500">
+              Atenção: a escolha diferente pode afetar a experiência de navegação e funcionalidades do site.
+            </div>
+            <h2 className="text-white text-3xl font-bold mb-6">Como você quer navegar?</h2>
+            <div className="flex gap-8">
+              <button
+                className="bg-[#1a1a1a] border border-blue-500 text-white px-8 py-4 rounded-2xl font-bold text-xl shadow-lg hover:bg-blue-900/80 transition-colors"
+                onClick={() => {
+                  window.localStorage.setItem('siteDeviceMode', 'pc');
+                  window.dispatchEvent(new Event('siteDeviceModeChange'));
+                  setFadeScreen(true);
+                  setTimeout(() => setLoading(false), 1000);
+                }}
+              >PC</button>
+              <button
+                className="bg-[#1a1a1a] border border-blue-500 text-white px-8 py-4 rounded-2xl font-bold text-xl shadow-lg hover:bg-blue-900/80 transition-colors"
+                onClick={() => {
+                  window.localStorage.setItem('siteDeviceMode', 'mobile');
+                  window.dispatchEvent(new Event('siteDeviceModeChange'));
+                  setFadeScreen(true);
+                  setTimeout(() => setLoading(false), 1000);
+                }}
+              >Celular</button>
+            </div>
+          </div>
+        )}
       </div>
     )
   )

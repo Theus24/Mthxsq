@@ -13,6 +13,8 @@ export const ChromaGrid = ({
   damping = 0.45,
   fadeOut = 0.6,
   ease = "power3.out",
+  enableGray = true,
+  isPC = true,
 }) => {
   const rootRef = useRef(null);
   const fadeRef = useRef(null);
@@ -75,13 +77,11 @@ export const ChromaGrid = ({
     <div
       ref={rootRef}
       className={`chroma-grid ${className}`}
-      style={
-        {
-          "--r": `${radius}px`,
-          "--cols": columns,
-          "--rows": rows,
-        }
-      }
+      style={{
+        "--r": `${radius}px`,
+        "--cols": columns,
+        "--rows": rows,
+      }}
       onPointerMove={handleMove}
       onPointerLeave={handleLeave}
     >
@@ -90,29 +90,28 @@ export const ChromaGrid = ({
           key={i}
           className="chroma-card"
           onMouseMove={handleCardMove}
-          // Panggil `onItemClick` saat kartu diklik dan kirim datanya
           onClick={() => onItemClick(c)}
-          style={
-            {
-              "--card-border": c.borderColor || "transparent",
-              "--card-gradient": c.gradient,
-              cursor: "pointer", // Selalu pointer karena akan membuka modal
-            }
-          }
+          style={{
+            "--card-border": c.borderColor || "transparent",
+            "--card-gradient": c.gradient,
+            cursor: "pointer",
+          }}
         >
           <div className="chroma-img-wrapper">
             <img src={c.image} alt={c.title} loading="lazy" />
           </div>
           <footer className="chroma-info">
-            <h3 className="name">{c.title}</h3>
+            <div style={{position: 'relative', minHeight: '70px'}}>
+              <h3 className="name font-bold underline neon-title" style={{position: 'absolute', top: '0', left: '0', right: '0', margin: '0 auto', textAlign: 'center'}}>{c.title}</h3>
+              <p className="role font-bold text-white-500" style={{position: 'absolute', top: '38px', left: '0', right: '0', margin: '0 auto', textAlign: 'center'}}>{c.subtitle}</p>
+            </div>
             {c.handle && <span className="handle">{c.handle}</span>}
-            <p className="role">{c.subtitle}</p>
             {c.location && <span className="location">{c.location}</span>}
           </footer>
         </article>
       ))}
-      <div className="chroma-overlay" />
-      <div ref={fadeRef} className="chroma-fade" />
+      {enableGray && <div className="chroma-overlay" />}
+      {enableGray && <div ref={fadeRef} className="chroma-fade" />}
     </div>
   );
 };
