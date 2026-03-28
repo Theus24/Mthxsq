@@ -371,7 +371,7 @@ function App() {
                 data-aos-duration="1000"
                 data-aos-once="true"
               >
-                Portfolio Selected Work
+                Pj
               </span>
               <h1
                 className="mb-4 text-center text-4xl font-bold tracking-tight text-white md:text-5xl"
@@ -674,7 +674,7 @@ function App() {
               className="mt-5 rounded-[30px] border border-cyan-400/15 bg-[linear-gradient(160deg,_rgba(5,10,20,0.96),_rgba(11,20,39,0.88))] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.32)]"
             >
               <div className="mb-5">
-                <p className="text-[11px] uppercase tracking-[0.28em] text-cyan-300/75">Selected work</p>
+                <p className="text-[11px] uppercase tracking-[0.28em] text-cyan-300/75">!</p>
                 <h2 className="mt-2 text-2xl font-bold text-white">Projetos com visual mais direto e toque mais prático.</h2>
                 <p className="mt-3 text-sm leading-7 text-zinc-300">
                   No celular, a navegação foi pensada para dedo e ritmo. Os cards ficam mais limpos e a abertura dos detalhes acontece pela seta.

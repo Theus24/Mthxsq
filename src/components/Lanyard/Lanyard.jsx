@@ -7,8 +7,9 @@ import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphe
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
 // replace with your own imports, see the usage snippet for details
-const cardGLB = "/mttsxwebs/assets/card.glb";
-const lanyard = "/mttsxwebs/assets/lanyard.png";
+const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/';
+const cardGLB = `${base}assets/card.glb`;
+const lanyard = `${base}assets/lanyard.png`;
 
 import * as THREE from 'three';
 import './Lanyard.css';
