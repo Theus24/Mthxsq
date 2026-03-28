@@ -1,6 +1,6 @@
 {
   "name": "mttsxwebs",
-  "homepage": "https://rissss21.github.io/mttsxwebs",
+  "homepage": "https://Theus24.github.io/Mthxsq",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -19,6 +19,7 @@
     "animate.css": "^4.1.1",
     "aos": "^3.0.0-beta.6",
     "firebase": "^12.1.0",
+    "gh": "^2.8.9",
     "gsap": "^3.13.0",
     "meshline": "^3.3.1",
     "motion": "^12.23.12",
