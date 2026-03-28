@@ -1,6 +1,6 @@
-# Portofolio Web — [Faris Edrik P / rissss21]
+# mttsxwebs — [Faris Edrik P / rissss21]
 
-Selamat datang di portofolio web pribadi saya! 🌐  
+Selamat datang di mttsxwebs, web pribadi saya! 🌐  
 Dibuat dengan React + Vite, ini adalah showcase dari project, skill, dan karya yang ingin saya bagikan.
 
 ##  Struktur Project
@@ -22,8 +22,8 @@ Dibuat dengan React + Vite, ini adalah showcase dari project, skill, dan karya y
 
 1. Clone repository ini:
 ```bash
-git clone https://github.com/rissss21/portofolio.git
-cd portofolio
+git clone https://github.com/rissss21/mttsxwebs.git
+cd mttsxwebs
 ````
 
 2. Install dependencies:
@@ -44,7 +44,7 @@ npm run build
 ## &#x20;Quick Preview
 
 Jika sudah di-deploy (contoh: GitHub Pages, Netlify, Vercel), kamu bisa tambahkan link deploy di sini, misalnya:
-[🔗 Lihat versi live](https://username.github.io/portofolio/)
+[🔗 Lihat versi live](https://username.github.io/mttsxwebs/)
 
 ## Tentang Saya
 
@@ -58,4 +58,4 @@ Saya seorang Developer yang suka bikin aplikasi web ringan dengan tampilan moder
 ---
 
 
-[1]: https://github.com/rissss21/portofolio "GitHub - rissss21/portofolio"
+[1]: https://github.com/rissss21/mttsxwebs "GitHub - rissss21/mttsxwebs"

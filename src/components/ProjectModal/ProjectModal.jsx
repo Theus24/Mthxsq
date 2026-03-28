@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiX, FiGithub } from 'react-icons/fi'; // Install react-icons jika belum: npm install react-icons
+import { FiX, FiExternalLink } from 'react-icons/fi'; // Install react-icons jika belum: npm install react-icons
 
 const ProjectModal = ({ isOpen, onClose, project }) => {
   // State untuk mengontrol animasi penutupan
@@ -74,7 +74,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
               ${project.image && project.image.includes('reparo') ? 'bg-gray-500 text-white cursor-not-allowed pointer-events-none' : 'bg-blue-600 hover:bg-blue-700'}`}
             style={project.image && project.image.includes('reparo') ? { opacity: 0.7 } : {}}
           >
-            <FiGithub />
+            <FiExternalLink />
             <span>Acesse aqui</span>
           </a>
         )}

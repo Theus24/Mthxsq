@@ -42,13 +42,13 @@ const Footer = () => {
         
         {/* Judul - paling atas di mobile */}
         <h1 className="text-base font-semibold order-1 md:order-none">
-          Todos os direitos reservados © 2025 Mist (Matheus)
+          Todos os direitos reservados © 2025 404 (Matheus)
         </h1>
 
         {/* Ikon Sosmed - di tengah di mobile */}
         <div className="flex gap-3 order-2 md:order-none">
           <a href="https://github.com/Theus24"><i className="ri-github-fill ri-2x"></i></a>
-          <a href="https://www.instagram.com/mtheusz._/"><i className="ri-instagram-fill ri-2x"></i></a>
+          <a href="https://www.instagram.com/mthxsq/"><i className="ri-instagram-fill ri-2x"></i></a>
           <a href="https://www.youtube.com/@M4tzito"><i className="ri-youtube-fill ri-2x"></i></a>
         </div>
 

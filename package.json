@@ -1,12 +1,12 @@
 {
-  "name": "portofolio",
-  "homepage": "https://rissss21.github.io/portofolio",
+  "name": "mttsxwebs",
+  "homepage": "https://rissss21.github.io/mttsxwebs",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp dist/index.html dist/404.html",
+    "build": "vite build && node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist"
